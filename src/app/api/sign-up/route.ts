@@ -7,12 +7,12 @@ export async function POST(request : Request){
     await ConnectDB()
 
     try {
-        
         const { username, email , password } = await request.json()
-
+        console.log(username,email,password)
         const IsUsernameAvailable = await UserModel.findOne({ username, isVerified : true })
-        
-        if(!IsUsernameAvailable){
+        console.log(IsUsernameAvailable)
+
+        if(IsUsernameAvailable){
             return Response.json(
                 {
                     success : false,
@@ -81,7 +81,7 @@ export async function POST(request : Request){
                 },{status : 500}
             )
         }
-
+        console.log(emailResponse)
         return Response.json(
             {
                 success : true,
