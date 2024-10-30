@@ -10,7 +10,7 @@ export const authOptions : AuthOptions = {
         Credentials({
             name : "Credentials",
             credentials : {
-                email : { label : "email", type : "text" },
+                identifier : { label : "identifier", type : "text" },
                 password : { label : "Password", type : "password" },
             },
             async authorize(credentials) : Promise<any>{
@@ -18,11 +18,11 @@ export const authOptions : AuthOptions = {
                     throw new Error("Credentials are required");
                   }
           
-            
+                  console.log(credentials)
                 await connectDatabase()
                 try {
-                    const user  = await UserModel.findOne({ $or : [ {email : credentials.email}, {password : credentials.password}] })
-
+                    const user  = await UserModel.findOne({ $or : [ {email : credentials?.identifier}, {username : credentials?.identifier}] })
+                    console.log(user)
                     if(!user){
                         throw new Error("User not found")
                     }
@@ -33,20 +33,21 @@ export const authOptions : AuthOptions = {
 
                     const isPasswordValid = await bcyrpt.compare(credentials.password, user.password)
 
-                    if(isPasswordValid){
-                        return user
-                    }else{
+                    if(!isPasswordValid){
                         throw new Error("Invalid password")
                     }
+                    return user; 
 
                 } catch (error : any) {
+                    console.error(error);
                     throw new Error(error);
+                    return null;
                 }
             }
         })
     ],
     pages : {
-        signIn : "/signin",
+        signIn : "/sign-in",
         signOut : "/signout",
         error : "/error",
     },
