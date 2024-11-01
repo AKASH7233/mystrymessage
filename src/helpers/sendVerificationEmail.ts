@@ -12,9 +12,9 @@ export async function sendVerificationEmail(username : string , email : string ,
             react : VerificationEmail({ username, otp: verifyCode }),
         })
         console.log(response)
-        if(!response.data) {
-            return { success: false, message: 'Failed to send verification email' };
-        }
+        // if(!response.data) {
+        //     return { success: false, message: 'Failed to send verification email' };
+        // }
 
         return {success: true, message: "Verification email sent successfully"};
     } catch (error) {

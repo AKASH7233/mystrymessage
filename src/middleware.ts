@@ -19,15 +19,11 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL('/dashboard', url.origin))
     }
 
-    // if(!token && (
-    //     url.pathname.startsWith('/dashboard') ||
-    //     url.pathname.startsWith('/profile') ||
-    //     url.pathname.startsWith('/messages') ||
-    //     url.pathname.startsWith('/settings') ||
-    //     url.pathname.startsWith('/logout') 
-    // ) ){
-    //     return NextResponse.redirect(new URL('/sign-in', url.origin))
-    // }
+    if(!token && (
+        url.pathname.startsWith('/dashboard') 
+    ) ){
+        return NextResponse.redirect(new URL('/sign-in', url.origin))
+    }
 
     return NextResponse.next()
 }

@@ -4,7 +4,7 @@ import { authOptions } from "../auth/[...nextauth]/options";
 import UserModel from "@/models/User";
 import mongoose from "mongoose";
 
-export async function POST(req : Request){
+export async function GET(req : Request){
     await connectDatabase();
     const session = await getServerSession(authOptions)
 
@@ -30,14 +30,14 @@ export async function POST(req : Request){
 
         if(!user || user.length === 0){
             return Response.json({
-                success : false,
+                success : true,
                 message : "No messages found"
-            },{status : 404})
+            },{status : 200})
         }
 
         return Response.json({
             success : true,
-            data : user[0].messages
+            messages : user[0].messages
         },{status : 200})
 
     } catch (error) {

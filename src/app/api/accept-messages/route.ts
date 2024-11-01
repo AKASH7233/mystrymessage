@@ -21,7 +21,7 @@ export async function POST(req : Request){
     const userId = user?._id
 
     const { acceptMessages } = await req.json();
-    
+    console.log(acceptMessages)
     try {
         
         const updatedUser = await UserModel.findByIdAndUpdate(
@@ -30,6 +30,7 @@ export async function POST(req : Request){
             { new : true }
         )
 
+        console.log(updatedUser)
         if(!updatedUser){
             return Response.json({
                 success : false,
@@ -39,7 +40,8 @@ export async function POST(req : Request){
 
         return Response.json({
             success : true,
-            message : "User status to accept messages updated successfully"
+            message : "User status to accept messages updated successfully",
+            isAcceptingMessage : updatedUser.isAcceptingMessage
         },{status : 200})
  
     } catch (error) {
@@ -81,7 +83,7 @@ export async function GET(req : Request) {
         return Response.json({
             success : true,
             message : "User found successfully",
-            data : foundUser?.isAcceptingMessage
+            isAcceptingMessage : foundUser?.isAcceptingMessage
         },{status : 200})
 
     } catch (error) {
