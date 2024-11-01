@@ -31,7 +31,7 @@ const connectDatabase = async () : Promise<void> => {
         });
 
     } catch (error) {
-        console.log('Something went wrong during connecting to database !!')
+        console.log('Something went wrong during connecting to database !!',error)
         process.exit(1);
     }
 }

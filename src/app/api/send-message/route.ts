@@ -39,7 +39,7 @@ export async function POST(req : Request){
         console.log('Failed to send Message !')
         return Response.json({
             success : false,
-            message : "An error occurred while sending message"
+            message : error ?? "An error occurred while sending message"
         },{status : 500});
     }
 }

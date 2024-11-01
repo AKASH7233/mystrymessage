@@ -40,7 +40,7 @@ function page() {
   const fetchIsAcceptMessage = useCallback(async () => {
     setIsToggleLoading(true)
     try {
-      let response = await axios.get<ApiResponse>('/api/accept-messages')
+      const response = await axios.get<ApiResponse>('/api/accept-messages')
       setValue('acceptMessages', response.data.isAcceptingMessage)
       console.log(response.data.isAcceptingMessage)
     } catch (error) {
@@ -59,7 +59,7 @@ function page() {
     setIsToggleLoading(false)
     setIsLoading(true)
     try {
-      let response = await axios.get<ApiResponse>('/api/get-messages')
+      const response = await axios.get<ApiResponse>('/api/get-messages')
       setMessages(response.data.messages || [])
       console.log('messages',response.data)
       if(refresh){
@@ -90,7 +90,7 @@ function page() {
 
   const handleSwitchToggle = async() => {
     try {
-      let response = await axios.post('/api/accept-messages', {
+      const response = await axios.post('/api/accept-messages', {
         acceptMessages : !acceptMessages
       })
       console.log('toggled', response.data.isAcceptingMessage)
