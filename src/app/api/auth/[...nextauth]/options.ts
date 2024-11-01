@@ -1,4 +1,4 @@
-import NextAuth, { AuthOptions } from "next-auth"
+import { AuthOptions } from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import UserModel from "@/models/User"
 import bcyrpt from "bcryptjs"

@@ -11,7 +11,7 @@ import axios, { AxiosError } from 'axios'
 import { BadgeX, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import messages from '@/message.json';
