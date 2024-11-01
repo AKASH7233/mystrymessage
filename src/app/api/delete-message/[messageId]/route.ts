@@ -3,7 +3,7 @@ import { getServerSession, User } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]/options";
 import UserModel from "@/models/User";
 
-export async function DELETE(req : Request, {params} : {params : {messageId : string}}){
+export async function DELETE({params} : {params : {messageId : string}}){
     const messageId = params.messageId
     await connectDatabase();
     const session = await getServerSession(authOptions)

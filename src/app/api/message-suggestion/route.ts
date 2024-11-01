@@ -1,12 +1,12 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-export async function GET(req: Request) {
+export async function GET() {
     try {
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY!);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         const currentTimestamp = new Date().toISOString();
-        
+
         const prompt = 
             `Generate a list of message suggestions related to feedback or chat interactions. Each message should be formatted as an object in an array, with each object containing:
             - 'id': A unique identifier for each message.
